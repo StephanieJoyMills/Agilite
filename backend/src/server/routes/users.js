@@ -7,7 +7,7 @@ module.exports = async function(app) {
       const userData = await login(email);
       if (userData.password === password) {
         res.sendStatus(200);
-        return { user_id: id };
+        return { user_id: userData.id };
       }
 
       res.status(404).send({ error: "invalid user" });

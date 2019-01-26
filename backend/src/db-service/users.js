@@ -1,10 +1,10 @@
 const { knex } = require("./knex");
 
 exports.login = async email => {
-  return knex("users")
-    .select("password, id")
-    .where("email", email)
-    .limit(1);
+  const res = await knex("users")
+    .select("password", "id")
+    .where("email", email);
+  return res[0];
 };
 
 exports.getProjects = async id => {
