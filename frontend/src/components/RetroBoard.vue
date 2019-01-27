@@ -3,13 +3,13 @@
     <div class="board">
         <v-layout row wrap>
             <v-flex md4>
-                <task-lane id="todo" title="To-Do" :items="todoItems"></task-lane>
+                <task-lane id="start" title="Start" :items="todoItems"></task-lane>
             </v-flex>
             <v-flex md4>
-                <task-lane id="inProgress" title="In progress" :items="inProgressItems"></task-lane>
+                <task-lane id="stop" title="Stop" :items="inProgressItems"></task-lane>
             </v-flex>
             <v-flex md4>
-                <task-lane id="done" title="Done" :items="doneItems"></task-lane>
+                <task-lane id="continue" title="Continue" :items="doneItems"></task-lane>
             </v-flex>
         </v-layout>
     </div>
@@ -26,9 +26,9 @@ export default {
         'task-lane': TaskLane,
     },
     computed: mapState({
-        todoItems: s => s.items.todo,
-        inProgressItems: s => s.items.inProgress,
-        doneItems: s => s.items.done,
+        startItems: s => s.items.start,
+        stopItems: s => s.items.stop,
+        continueItems: s => s.items.continue,
     }), 
 };
 </script>

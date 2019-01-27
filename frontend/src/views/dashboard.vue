@@ -19,14 +19,14 @@
                     <v-list-tile-action>
                         <v-icon>account_circle</v-icon>
                     </v-list-tile-action>
-                    <v-list-tile-title>Profile</v-list-tile-title>
+                    <v-list-tile-title @click="profile()">Profile</v-list-tile-title>
                 </v-list-tile>
 
                 <v-list-tile>
                     <v-list-tile-action>
                         <v-icon>dashboard</v-icon>
                     </v-list-tile-action>
-                    <v-list-tile-title>Templates</v-list-tile-title>
+                    <v-list-tile-title @click="templates()">Templates</v-list-tile-title>
                 </v-list-tile>
 
                 <v-list-tile>
@@ -131,6 +131,12 @@
         methods: {
             selectItem() {
                 this.$router.push('/board')
+            },
+            profile() {
+                this.$router.push('/profile')
+            },
+            templates() {
+                this.$router.push('/templates')
             }
         }
     }
