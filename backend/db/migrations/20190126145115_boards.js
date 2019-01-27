@@ -1,7 +1,7 @@
 exports.up = async function(knex, Promise) {
-  const exists = await knex.schema.hasTable("diagrams");
+  const exists = await knex.schema.hasTable("boards");
   if (!exists) {
-    return knex.schema.createTable("diagrams", function(table) {
+    return knex.schema.createTable("boards", function(table) {
       table.increments("id").primary();
       table
         .integer("template_id")
@@ -9,7 +9,7 @@ exports.up = async function(knex, Promise) {
         .references("templates.id")
         .onDelete("CASCADE");
       table.string("description");
-      table.string("image_url");
+      table.string("board_image_url");
       table
         .integer("creator_id")
         .notNullable()
@@ -23,10 +23,14 @@ exports.up = async function(knex, Promise) {
         .timestamp("created_at")
         .notNullable()
         .defaultTo(knex.fn.now());
+      table
+        .timestamp("accessed_at")
+        .notNullable()
+        .defaultTo(knex.fn.now());
     });
   }
 };
 
 exports.down = function(knex, Promise) {
-  return knex.schema.dropTableIfExists("diagrams");
+  return knex.schema.dropTableIfExists("boards");
 };

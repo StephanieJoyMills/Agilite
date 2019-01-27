@@ -13,3 +13,11 @@ exports.getProjects = async id => {
     .leftJoin("projects", "projects.id", "project_members.project_id")
     .select("*");
 };
+
+exports.getDesigns = async id => {
+  return knex("boards")
+    .where("creator_id", id)
+    .andWhere("project_id", null)
+    .leftJoin("templates", "templates.id", "boards.template_id")
+    .select("*");
+};

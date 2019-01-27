@@ -6,7 +6,7 @@ exports.up = async function(knex, Promise) {
       table.string("name").notNullable();
       table.string("description");
       table
-        .string("image_url")
+        .string("project_image_url")
         .notNullable()
         .unique();
     });

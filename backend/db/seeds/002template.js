@@ -10,7 +10,7 @@ exports.seed = function(knex, Promise) {
           type: "Sprint Retro",
           description: "Start, Stop, Continue",
           categories: JSON.stringify(["Start", "Stop", "Continue"]),
-          image_url: "_"
+          template_image_url: "_"
         }
       ]);
     });

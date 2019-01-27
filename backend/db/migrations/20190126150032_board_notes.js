@@ -1,22 +1,22 @@
 exports.up = async function(knex, Promise) {
-  const exists = await knex.schema.hasTable("diagram_notes");
+  const exists = await knex.schema.hasTable("board_notes");
   if (!exists) {
-    return knex.schema.createTable("diagram_notes", function(table) {
+    return knex.schema.createTable("board_notes", function(table) {
       table
         .integer("note_id")
         .notNullable()
         .references("notes.id")
         .onDelete("CASCADE");
       table
-        .integer("diagram_id")
+        .integer("board_id")
         .notNullable()
-        .references("diagrams.id")
+        .references("boards.id")
         .onDelete("CASCADE");
-      table.primary(["note_id", "diagram_id"]);
+      table.primary(["note_id", "board_id"]);
     });
   }
 };
 
 exports.down = function(knex, Promise) {
-  return knex.schema.dropTableIfExists("diagram_notes");
+  return knex.schema.dropTableIfExists("board_notes");
 };
