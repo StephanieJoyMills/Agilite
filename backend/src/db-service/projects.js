@@ -15,16 +15,6 @@ exports.getProject = async id => {
 
   const obj = { project, boards, members };
   return obj;
-
-  //   .leftJoin("boards", "boards.project_id", "projects.id");
-  // return (
-  //   knex("projects")
-  //     .where("projects.id", id)
-  //     .leftJoin("project_members", "project_members.project_id", "projects.id")
-  //     .leftJoin("boards", "boards.project_id", "projects.id")
-  // .leftJoin("board_notes", "board_notes.board_id", "boards.id")
-  // .leftJoin("notes", "notes.id", "board_notes.note_id")
-  // .select("*")
 };
 
 exports.getRecent = async id => {

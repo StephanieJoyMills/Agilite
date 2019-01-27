@@ -42,7 +42,7 @@ module.exports = function(app) {
 
       var result = spawnSync(
         "python",
-        [path.join(__dirname, "../../scripts/test.py"), "name", "lname"],
+        [path.join(__dirname, "../../scripts/post-it-extraction.py")],
         {
           encoding: "utf8"
         }
