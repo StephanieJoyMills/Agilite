@@ -31,3 +31,12 @@ exports.getNotes = async board_id => {
     .leftJoin("notes", "notes.id", "board_notes.note_id")
     .select("*");
 };
+
+exports.insertNote = (board_id, note) => {
+  return knex("notes")
+    .insert(note)
+    .returning("id")
+    .then(function(id) {
+      return knex("board_notes").insert({ note_id: id[0], board_id });
+    });
+};

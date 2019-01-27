@@ -1,4 +1,4 @@
-const { getRecent, getNotes } = require("../../db-service");
+const { getRecent, getNotes, insertNote } = require("../../db-service");
 
 const path = require("path");
 
@@ -35,20 +35,30 @@ module.exports = function(app) {
       next(err);
     }
   });
-  app.get("/process_image/:image_url", async (req, res, next) => {
-    const { image_url } = req.params;
+  app.get("/process_image/:image_url/diagram/:id", async (req, res, next) => {
+    let { image_url, id } = req.params;
+    let image = `http://storage.googleapis.com/delta-hacks/${image_url}`;
+
     try {
       var spawnSync = require("child_process").spawnSync;
 
       var result = spawnSync(
         "python",
-        [path.join(__dirname, "../../scripts/post-it-extraction.py")],
+        [path.join(__dirname, "../../scripts/text-extraction.py"), image],
         {
           encoding: "utf8"
         }
       );
-      console.log(result.stdout, result.stderr);
-      res.send(result.stdout);
+      let notes = result.stdout.split("*").filter(function(el) {
+        return el.length > 2;
+      });
+
+      notes.forEach(function(value) {
+        let note = JSON.parse(value);
+        insertNote(id, note);
+      });
+
+      res.sendStatus(200);
     } catch (err) {
       console.log(
         {
