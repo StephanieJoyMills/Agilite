@@ -1,5 +1,6 @@
 <template>
     <div id="app">
+        <link href="https://cdn.jsdelivr.net/npm/@typopro/web-bebas-neue@3.7.5/TypoPRO-BebasNeue-Bold.min.css" rel="stylesheet">
             <router-view @authenticated="setAuthenticated" />
     </div>
 </template>
@@ -41,7 +42,6 @@
         margin-top: 0;
     }
     #app {
-        width: 1024px;
         margin: auto;
     }
 </style>

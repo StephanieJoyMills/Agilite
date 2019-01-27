@@ -1,6 +1,6 @@
 <template>
     <v-app>
-        <v-navigation-drawer>
+        <v-navigation-drawer app="true">
             <v-list>
                 <v-list-tile>
                     <v-list-tile-action>
@@ -58,7 +58,7 @@
 
                 </v-list-tile>
 
-                <v-list>    
+                <v-list>
                     <v-list-tile v-for="project in projects" @click="">
                         <v-list-tile-title v-text="project"></v-list-tile-title>
                     </v-list-tile>
@@ -66,26 +66,58 @@
 
             </v-list>
         </v-navigation-drawer>
-        <v-content>
-            <v-flex md8>
-                <v-card>
-                    <v-img src="https://cdn.vuetifyjs.com/images/cards/desert.jpg" aspect-ratio="2.75"></v-img>
 
-                    <v-card-title primary-title>
-                        <div>
-                            <h3 class="headline mb-0">Kangaroo Valley Safari</h3>
-                            <div>Located two hours south of Sydney in the <br>Southern Highlands of New South Wales,
-                                ...</div>
-                        </div>
-                    </v-card-title>
+        <v-content style="padding: 20px; margin-left: 400px">
+            <span class="head">Recent Boards</span>
+            <v-container fluid>
+                <v-layout row wrap>
+                    <v-card>
+                        <v-img src="https://cdn.vuetifyjs.com/images/cards/desert.jpg" aspect-ratio="2.75"></v-img>
 
-                    <v-card-actions>
-                        <v-btn flat color="orange">Share</v-btn>
-                        <v-btn flat color="orange">Explore</v-btn>
-                    </v-card-actions>
-                </v-card>
-            </v-flex>
+                        <v-card-title primary-title>
+                            <div>
+                                <h3 class="headline mb-0">Kangaroo Valley Safari</h3>
+                            </div>
+                        </v-card-title>
+                    </v-card>
+                    <v-card>
+                        <v-img src="https://cdn.vuetifyjs.com/images/cards/desert.jpg" aspect-ratio="2.75"></v-img>
+
+                        <v-card-title primary-title>
+                            <div>
+                                <h3 class="headline mb-0">Kangaroo Valley Safari</h3>
+                            </div>
+                        </v-card-title>
+                    </v-card>
+                </v-layout>
+            </v-container>
+
+            <span class="head">My Designs</span>
+            <v-container fluid>
+                <v-layout row wrap>
+                    <v-card>
+                        <v-img src="https://cdn.vuetifyjs.com/images/cards/desert.jpg" aspect-ratio="2.75"></v-img>
+
+                        <v-card-title primary-title>
+                            <div>
+                                <h3 class="headline mb-0">Kangaroo Valley Safari</h3>
+                            </div>
+                        </v-card-title>
+                    </v-card>
+                    <v-card>
+                        <v-img src="https://cdn.vuetifyjs.com/images/cards/desert.jpg" aspect-ratio="2.75"></v-img>
+
+                        <v-card-title primary-title>
+                            <div>
+                                <h3 class="headline mb-0">Kangaroo Valley Safari</h3>
+                            </div>
+                        </v-card-title>
+                    </v-card>
+                </v-layout>
+            </v-container>
+           
         </v-content>
+
     </v-app>
 </template>
 
@@ -99,3 +131,15 @@
         })
     }
 </script>
+
+<style>
+.head {
+    font-family: TypoPRO Bebas Neue; 
+    font-size: 45px;
+    
+}
+.v-card {
+    margin: 20px;
+    width: 400px;
+}
+</style>

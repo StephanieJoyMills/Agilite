@@ -1,4 +1,4 @@
-const { login, getProjects } = require("../../db-service");
+const { login, getProjects, getDesigns } = require("../../db-service");
 
 module.exports = async function(app) {
   app.get("/login", async (req, res, next) => {
@@ -27,6 +27,23 @@ module.exports = async function(app) {
     try {
       const projects = await getProjects(id);
       res.send(projects);
+      return;
+    } catch (err) {
+      console.log(
+        {
+          err
+        },
+        "Failed to get projects"
+      );
+      next(err);
+    }
+  });
+
+  app.get("/user/:id/designs", async (req, res, next) => {
+    const { id } = req.params;
+    try {
+      const designs = await getDesigns(id);
+      res.send(designs);
       return;
     } catch (err) {
       console.log(

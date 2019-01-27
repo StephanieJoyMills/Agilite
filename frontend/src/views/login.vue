@@ -1,11 +1,16 @@
 
 
 <template>
+<<<<<<< HEAD
   <v-app light>
     <link
       href="https://cdn.jsdelivr.net/npm/@typopro/web-bebas-neue@3.7.5/TypoPRO-BebasNeue-Bold.min.css"
       rel="stylesheet"
     >
+=======
+  <v-app dark>
+      
+>>>>>>> master
     <v-content>
       <v-container fluid fill-height>
         <v-layout align-center justify-left>
