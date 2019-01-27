@@ -1,9 +1,7 @@
 <template>
     <div id="app">
-        <div id="nav">
-            <router-link v-if="authenticated" to="/login" v-on:click.native="logout()" replace>Logout</router-link>
-        </div>
-        <router-view @authenticated="setAuthenticated" />
+        <link href="https://cdn.jsdelivr.net/npm/@typopro/web-bebas-neue@3.7.5/TypoPRO-BebasNeue-Bold.min.css" rel="stylesheet">
+            <router-view @authenticated="setAuthenticated" />
     </div>
 </template>
 
@@ -14,8 +12,8 @@
             return {
                 authenticated: false,
                 mockAccount: {
-                    username: "nraboy",
-                    password: "password"
+                    username: "a",
+                    password: "a"
                 }
             }
         },
@@ -44,7 +42,6 @@
         margin-top: 0;
     }
     #app {
-        width: 1024px;
         margin: auto;
     }
 </style>
