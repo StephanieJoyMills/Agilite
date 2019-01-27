@@ -69,7 +69,7 @@ export default {
         },
         
         board () {
-            this.$router.push('/board');
+            this.$router.push('/board');    
         }
     }
 }
