@@ -44,7 +44,7 @@ module.exports = function(app) {
 
       var result = spawnSync(
         "python",
-        [path.join(__dirname, "../../scripts/text-extraction.py"), image],
+        [path.join(__dirname, "../../scripts/main.py"), image],
         {
           encoding: "utf8"
         }
