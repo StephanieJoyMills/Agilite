@@ -1,5 +1,6 @@
 <template>
 <v-app>
+    <navigation />
 <v-content style="padding: 20px; margin-left: 400px">
             <span class="head">Templates</span>
             <v-container fluid>
@@ -29,6 +30,13 @@
 </template>
 
 <script>
+import Navigation from "./Navigation";
+export default {
+    name: 'Templates',
+    components: {
+        navigation: Navigation,
+    },
+}
 </script>
 
 <style scoped>

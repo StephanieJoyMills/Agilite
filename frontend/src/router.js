@@ -2,10 +2,10 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import LoginComponent from "./views/login.vue"
 import SecureComponent from "./views/secure.vue"
-import DashboardComponent from "./views/dashboard.vue"
+import DashboardComponent from "./components/Dashboard.vue"
 import RetroComponent from "./components/RetroBoard.vue"
-import ProfileComponent from "./views/profile.vue"
-import TemplatesComponent from "./views/templates.vue"
+import ProfileComponent from "./components/Profile.vue"
+import TemplatesComponent from "./components/Templates.vue"
 import ExportComponent from "./views/export.vue"
 import Backlog from "./components/Backlog.vue"
 

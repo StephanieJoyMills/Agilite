@@ -1,10 +1,12 @@
 <template>
     <v-app>   
+        <navigation/>
     <v-container fill-height fluid grid-list-xl>
         <v-layout justify-center wrap>
-            <v-flex xs12 md8>
-                <span style="padding: 30px; line-height: 80px; font-family: TypoPRO Bebas Neue; font-size: 40px;">Edit your profile</span>
-                <v-card style="margin: 40px;" dark >    
+            <v-flex md3></v-flex>
+            <v-flex xs12 md6>
+                <span style=" line-height: 80px; font-family: TypoPRO Bebas Neue; font-size: 40px;">Edit your profile</span>
+                <v-card dark >    
                     <v-form>
                         <v-container py-0>
                             <v-layout wrap>
@@ -48,8 +50,8 @@
                     </v-form>
                 </v-card>
             </v-flex>
-            <v-flex xs12 md4>
-                <v-card class="v-card-profile" style="margin: 40px" dark>
+            <v-flex xs12 md3>
+                <v-card class="v-card-profile" style="margin-top:70px" dark>
                     <v-card-text class="text-xs-center">
                         <h6 class="category text-gray font-weight-thin mb-3">CEO / CO-FOUNDER</h6>
                         <h4 class="card-title font-weight-light">Alec Thompson</h4>
@@ -66,7 +68,11 @@
 </template>
 
 <script>
+    import Navigation from './Navigation';
     export default {
-        //
+        name: 'Profile',
+        components: {
+            navigation: Navigation,
+        }
     }
 </script>

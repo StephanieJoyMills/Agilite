@@ -25,7 +25,7 @@
     };
 </script>
 
-<style>
+<style scoped>
     .v-card {
         width: 300px;
     }

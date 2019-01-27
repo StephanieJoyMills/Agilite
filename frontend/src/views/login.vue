@@ -100,7 +100,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped >
 div.v-card__text {
   margin-left: 85px;
   padding-right: 0px;
