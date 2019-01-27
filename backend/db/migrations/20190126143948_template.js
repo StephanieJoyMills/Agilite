@@ -7,7 +7,7 @@ exports.up = async function(knex, Promise) {
       table.string("description");
       table.jsonb("categories");
       table
-        .string("image_url")
+        .string("template_image_url")
         .notNullable()
         .unique();
     });

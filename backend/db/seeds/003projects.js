@@ -9,7 +9,7 @@ exports.seed = function(knex, Promise) {
           id: 1,
           name: "AngelEth",
           description: "A blockchain application for small investory",
-          image_url: "_"
+          project_image_url: "_"
         }
       ]);
     });
