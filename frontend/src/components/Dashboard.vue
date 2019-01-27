@@ -20,21 +20,21 @@
 
             <v-card-title primary-title>
               <div>
-                <h3 class="headline mb-0">Kangaroo Valley Safari</h3>
+                <h3 class="headline mb-0">Sprint Retro #3</h3>
               </div>
             </v-card-title>
           </v-card>
         </v-layout>
       </v-container>
 
-      <span class="head">My Designs</span>
+      <span class="head">My Boards</span>
       <v-container fluid>
         <v-layout row wrap>
           <v-card @click.native="selectItem()">
             <v-img src="https://cdn.vuetifyjs.com/images/cards/desert.jpg" aspect-ratio="2.75"></v-img>
             <v-card-title primary-title @_click="selectItem()">
               <div>
-                <h3 class="headline mb-0">Kangaroo Valley Safari</h3>
+                <h3 class="headline mb-0">Sprint Planning Rough Draft</h3>
               </div>
             </v-card-title>
           </v-card>
@@ -43,7 +43,7 @@
 
             <v-card-title primary-title>
               <div>
-                <h3 class="headline mb-0">Kangaroo Valley Safari</h3>
+                <h3 class="headline mb-0">AngelEth - Investor Persona</h3>
               </div>
             </v-card-title>
           </v-card>

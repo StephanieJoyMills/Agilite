@@ -33,13 +33,13 @@
 
       <v-list-tile class = "menu topMenu"> 
         <v-list-tile-action>
-          <v-icon>event</v-icon>
+          <v-icon class="projIcon">event</v-icon>
         </v-list-tile-action>
-        <v-list-tile-title>Projects</v-list-tile-title>
+        <v-list-tile-title class ="proj">Projects</v-list-tile-title>
       </v-list-tile>
          <div class="fake-hr justify-center"></div>
 
-      <v-list>
+      <v-list class = " menu">
         <v-list-tile v-for="project in projects" >
           <v-list-tile-title v-text="project"></v-list-tile-title>
         </v-list-tile>
@@ -86,10 +86,19 @@ img {
     margin-top: 50px;
 }
 .fake-hr {
-    width: 70%;
+    width: 60%;
     height: 0.6px;
     margin-left: 40px;
-    background-color: white;
+    background-color:rgba(255, 255, 255, 0.2)
+    ;
+}
+.projIcon{
+    width: 200%;
+    margin-left: -30px;
+}
+.proj {
+    font-size: 20px;
+    margin-left: -20px;
 }
 .menu {
 margin-left: 60px;
