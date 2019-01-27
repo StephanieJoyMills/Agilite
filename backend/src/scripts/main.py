@@ -8,7 +8,7 @@ from tensorflow import reset_default_graph, AUTO_REUSE
 from line_segmentation import segment_lines
 from text_convert import word_conv
 
-colour_to_category = {'Cyan': 'To Do', 'Pink': 'Doing', 'Yellow': 'Done'}
+colour_to_category = {'Cyan': 'Start', 'Pink': 'Stop', 'Yellow': 'Continue'}
 
 class Note:
     def __init__(self, colour, contour):
@@ -40,9 +40,9 @@ class NoteSerialize:
 
 # These values were obtained from playing with the 
 # 'test-thresholding.py' script in this directory
-hue_thres = {'Cyan': [60, 110], 'Pink': [130, 180], 'Yellow': [30,80]}
-sat_thres = [82, 255]
-val_thres = [88, 255]
+hue_thres = {'Cyan': [65, 114], 'Pink': [130, 180], 'Yellow': [20,70]}
+sat_thres = {'Cyan': [86, 255], 'Pink': [82, 255], 'Yellow': [95,255]}
+val_thres = {'Cyan': [135, 255], 'Pink': [158, 255], 'Yellow': [153,255]}
 test_window = "Test Window"
 
 def url_to_image(url):
@@ -61,16 +61,16 @@ def main(image_url):
     
     # Threshold each colour 
     cyan_threshold = cv2.inRange(img_HSV, 
-                                 (hue_thres['Cyan'][0], sat_thres[0], val_thres[0]), 
-                                 (hue_thres['Cyan'][1], sat_thres[1], val_thres[1])) 
+                                 (hue_thres['Cyan'][0], sat_thres['Cyan'][0], val_thres['Cyan'][0]),
+                                 (hue_thres['Cyan'][1], sat_thres['Cyan'][1], val_thres['Cyan'][1]))
     
     pink_threshold = cv2.inRange(img_HSV, 
-                                 (hue_thres['Pink'][0], sat_thres[0], val_thres[0]), 
-                                 (hue_thres['Pink'][1], sat_thres[1], val_thres[1]))
+                                 (hue_thres['Pink'][0], sat_thres['Pink'][0], val_thres['Pink'][0]),
+                                 (hue_thres['Pink'][1], sat_thres['Pink'][1], val_thres['Pink'][1]))
     
     yellow_threshold = cv2.inRange(img_HSV, 
-                                   (hue_thres['Yellow'][0], sat_thres[0], val_thres[0]), 
-                                   (hue_thres['Yellow'][1], sat_thres[1], val_thres[1])) 
+                                   (hue_thres['Yellow'][0], sat_thres['Yellow'][0], val_thres['Yellow'][0]),
+                                   (hue_thres['Yellow'][1], sat_thres['Yellow'][1], val_thres['Yellow'][1]))
     threshold_dict = {'Cyan': cyan_threshold,
                       'Pink': pink_threshold,
                       'Yellow': yellow_threshold}
@@ -141,8 +141,8 @@ def main(image_url):
             note.text += line.text + " "
 
         # Preview
-#        cv2.imshow(test_window, contour_subsection)
-#        cv2.waitKey()
+        #cv2.imshow(test_window, contour_subsection)
+        #cv2.waitKey()
 
     # Extract out each color into it's own list
     cyan_notes = list(filter(lambda x: x.colour == 'Cyan', notes_list))

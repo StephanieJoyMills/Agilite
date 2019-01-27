@@ -15,7 +15,7 @@ class Batch:
 
 class FilePaths:
 	"filenames and paths to data"
-	fnCharList = 'model/charList.txt'
+	fnCharList = 'charList.txt'
 	fnAccuracy = 'model/accuracy.txt'
 	fnTrain = '../data/'
 	fnInfer = '../data/test.png'
@@ -29,7 +29,7 @@ def infer(model, img):
 
 def word_conv(img, reuse):
     decoderType = DecoderType.BestPath
-    model = Model(open(FilePaths.fnCharList).read(), reuse, decoderType, mustRestore=True)
+    model = Model(open(FilePaths.fnCharList.rstrip(' \r\n/')).read(), reuse, decoderType, mustRestore=True)
     
     imgSize = (128, 32)
     input_img = preprocess(img, imgSize)
