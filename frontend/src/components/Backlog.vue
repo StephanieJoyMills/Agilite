@@ -1,6 +1,6 @@
 <template>
 <v-app>
-     <div class="backlog-view">
+    <div class="backlog-view">
     <new-item></new-item>
 
     <v-card>
@@ -20,7 +20,8 @@ export default {
     'new-item': NewItemForm,
   },
   computed: mapState({
-      items: s =>s.items.todo, 
+    items: s => [...s.items.stop, ...s.items.start, ...s.items.continue]
   }),
+
 };
 </script>

@@ -26,7 +26,7 @@ export default {
   methods: {
     submitForm() {
       if (this.itemText) {
-        this.$store.commit('stopItem', {
+        this.$store.commit('addItem', {
           text: this.itemText,
         });
 

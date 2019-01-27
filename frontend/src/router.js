@@ -8,11 +8,19 @@ import ProfileComponent from "./components/Profile.vue"
 import TemplatesComponent from "./components/Templates.vue"
 import ExportComponent from "./views/export.vue"
 import Backlog from "./components/Backlog.vue"
+import Image from "./components/Image.vue"
 
 Vue.use(Router)
 
 export default new Router({
     routes: [
+        {
+            path: "*",
+            redirect: {
+                name: "login",
+                component: LoginComponent
+            }
+        },
         {
             path: "/login",
             name: "login",
@@ -50,7 +58,11 @@ export default new Router({
         },
         {
             path: '/backlog',
-            component: Backlog,
+            component: Backlog
+        },
+        {
+            path: '/image',
+            component: Image
         }
     ]
 })

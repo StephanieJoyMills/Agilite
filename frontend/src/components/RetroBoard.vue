@@ -4,17 +4,17 @@
         <v-layout row wrap>
             <v-flex md4>
                 <v-card class="agile"> 
-                    <task-lane id="stop" title="Stop" :items="todoItems"></task-lane>
+                    <task-lane id="stop" title="Stop" :items="stopItems"></task-lane>
                 </v-card>
             </v-flex>
             <v-flex md4>
                 <v-card class="agile">
-                <task-lane id="start" title="Start" :items="inProgressItems"></task-lane>
+                <task-lane id="start" title="Start" :items="startItems"></task-lane>
                 </v-card>
             </v-flex>
             <v-flex md4>
                 <v-card class="agile">
-                <task-lane id="continue" title="Continue" :items="doneItems"></task-lane>
+                <task-lane id="continue" title="Continue" :items="continueItems"></task-lane>
                 </v-card>
             </v-flex>
         </v-layout>

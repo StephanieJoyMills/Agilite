@@ -1,19 +1,21 @@
 <template>
-<v-app>
-    <div class="card">
-        <h3 class="card-header" style="padding: 10px; font-size: 40px">{{title}}</h3>
-        <div class="card-body">
-            <draggable v-model="draggables" :options="{ group: 'default' }">
-                <div v-for="item in items" :key="item.id">
-                    <item :item="item"></item>
+    <v-app>
+        <div class="card">
+            <h3 class="card-header" style="padding: 10px; font-size: 40px">{{title}}</h3>
+            <div class="card-body">
+                <draggable v-model="draggables" :options="{ group: 'default' }">
+                    <div v-for="item in items" :key="item.id">
+                        <item :item="item"></item>
+                    </div>
+                </draggable>
+            </div>
+            <v-layout align-end fill-height>
+                <div class="card-footer text-muted" style="margin: 20px; font-weight: 600;">
+                    {{itemCount}}
                 </div>
-            </draggable>
+            </v-layout>
         </div>
-        <div class="card-footer text-muted">
-            {{itemCount}}
-        </div>
-    </div>
-</v-app>
+    </v-app>
 </template>
 
 <script>
@@ -49,7 +51,9 @@
 </script>
 
 <style>
-.card-body > * {
-    min-height: 50px;
-}
+    .card-body>* {
+        min-height: 50px;
+        height: fill;
+        margin: 30px;
+    }
 </style>
