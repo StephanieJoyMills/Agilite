@@ -40,7 +40,7 @@
               </v-card-text>
               <v-card-actions style=" margin-bottom: 220px; ">
                 <v-spacer></v-spacer>
-                <v-btn text-color=white color="#004B91" v-on:click="login()">Login</v-btn>
+                <v-btn color="#004B91" v-on:click="login()" dark>Login</v-btn>
               </v-card-actions>
           
             <!-- <v-card class="login" style="margin-top: 40px; text-align: center; font-weight: 600">
