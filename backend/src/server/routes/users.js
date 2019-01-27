@@ -3,6 +3,7 @@ const { login, getProjects } = require("../../db-service");
 module.exports = async function(app) {
   app.get("/login", async (req, res, next) => {
     const { email, password } = req.body;
+    console.log(req);
     try {
       const userData = await login(email);
       if (userData.password === password) {
