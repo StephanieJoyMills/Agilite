@@ -1,7 +1,7 @@
 <template>
     <div id="app">
         <link href="https://cdn.jsdelivr.net/npm/@typopro/web-bebas-neue@3.7.5/TypoPRO-BebasNeue-Bold.min.css" rel="stylesheet">
-            <router-view @authenticated="setAuthenticated" />
+            <router-view />
     </div>
 </template>
 
@@ -17,11 +17,7 @@
                 }
             }
         },
-        mounted() {
-            if(!this.authenticated) {
-                this.$router.replace({ name: "login" });
-            }
-        },
+       
         methods: {
             setAuthenticated(status) {
                 this.authenticated = status;

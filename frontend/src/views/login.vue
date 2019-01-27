@@ -1,16 +1,11 @@
 
 
 <template>
-<<<<<<< HEAD
   <v-app light>
     <link
       href="https://cdn.jsdelivr.net/npm/@typopro/web-bebas-neue@3.7.5/TypoPRO-BebasNeue-Bold.min.css"
       rel="stylesheet"
     >
-=======
-  <v-app dark>
-      
->>>>>>> master
     <v-content>
       <v-container fluid fill-height>
         <v-layout align-center justify-left>
@@ -87,29 +82,7 @@ export default {
   methods: {
     login() {
       if (this.input.username != "" && this.input.password != "") {
-        // Doesn't work
-
-        // axios({
-        //     method: 'get',
-        //     url: 'http://localhost:3000/login',
-        //     {
-        //         email: 'this.input.username',
-        //         password: 'this.input.password'
-        //     }
-        // // })
-        axios
-          .get("http://localhost:3000/login", {
-            email: "this.input.username",
-            password: "this.input.password"
-          })
-          .then(function(response) {
-            if (response.status == 200) {
-              this.$emit("authenticated", true);
-              this.$router.replace({ name: "secure" });
-            } else {
-              console.log("The username and / or password is incorrect");
-            }
-          });
+    
         if (
           this.input.username == this.$parent.mockAccount.username &&
           this.input.password == this.$parent.mockAccount.password

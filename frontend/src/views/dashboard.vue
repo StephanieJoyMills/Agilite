@@ -95,10 +95,9 @@
             <span class="head">My Designs</span>
             <v-container fluid>
                 <v-layout row wrap>
-                    <v-card>
+                    <v-card @click.native="selectItem()">
                         <v-img src="https://cdn.vuetifyjs.com/images/cards/desert.jpg" aspect-ratio="2.75"></v-img>
-
-                        <v-card-title primary-title>
+                        <v-card-title primary-title @_click="selectItem()">
                             <div>
                                 <h3 class="headline mb-0">Kangaroo Valley Safari</h3>
                             </div>
@@ -128,11 +127,16 @@
                 'Uber for coffee',
                 'Twitter for slack'
             ],
-        })
+        }),
+        methods: {
+            selectItem() {
+                this.$router.push('/board')
+            }
+        }
     }
 </script>
 
-<style>
+<style scoped>
 .head {
     font-family: TypoPRO Bebas Neue; 
     font-size: 45px;
