@@ -37,7 +37,7 @@
                     <span style="font-family: TypoPRO Bebas Neue; font-size: 40px;"> Build Fast.Document Faster. </span>
                 </v-card>
                 <v-card class="login trans" style="margin-top: 15px;">
-                    <span> Make you brainstorming and design sessions last with advanced image recogniation and digital manipulation </span>
+                    <span> Make your brainstorming and design sessions last with advanced image recognition and digital manipulation </span>
                 </v-card>
             </v-flex>
         </v-layout>
@@ -49,6 +49,7 @@
 
 
 <script>
+    const axios = require('axios');
     export default {
         name: 'Login',
         data() {
@@ -62,9 +63,31 @@
         methods: {
             login() {
                 if(this.input.username != "" && this.input.password != "") {
+                    // Doesn't work
+
+                    // axios({
+                    //     method: 'get',
+                    //     url: 'http://localhost:3000/login',
+                    //     {
+                    //         email: 'this.input.username',
+                    //         password: 'this.input.password'
+                    //     }
+                    // // })
+                    axios.get('http://localhost:3000/login', {
+                        email: 'this.input.username',
+                        password: 'this.input.password'
+                    })
+                    .then(function (response) {
+                        if (response.status == 200) {
+                            this.$emit("authenticated", true);
+                            this.$router.replace({name: "secure"});
+                        } else {
+                            console.log("The username and / or password is incorrect");
+                        }
+                    });
                     if(this.input.username == this.$parent.mockAccount.username && this.input.password == this.$parent.mockAccount.password) {
                         this.$emit("authenticated", true);
-                        this.$router.replace({ name: "secure" });
+                        this.$router.replace({ name: "dashboard" });
                     } else {
                         console.log("The username and / or password is incorrect");
                     }
