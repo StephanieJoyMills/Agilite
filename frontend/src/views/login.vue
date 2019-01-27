@@ -73,18 +73,18 @@
                     //         password: 'this.input.password'
                     //     }
                     // // })
-                    axios.get('http://localhost:3000/login', {
-                        email: 'this.input.username',
-                        password: 'this.input.password'
-                    })
-                    .then(function (response) {
-                        if (response.status == 200) {
-                            this.$emit("authenticated", true);
-                            this.$router.replace({name: "secure"});
-                        } else {
-                            console.log("The username and / or password is incorrect");
-                        }
-                    });
+                    // axios.get('http://localhost:3000/login', {
+                    //     email: 'this.input.username',
+                    //     password: 'this.input.password'
+                    // })
+                    // .then(function (response) {
+                    //     if (response.status == 200) {
+                    //         this.$emit("authenticated", true);
+                           //         this.$router.replace({name: "secure"});
+                    //     } else {
+                    //         console.log("The username and / or password is incorrect");
+                    //     }
+                    // });
                     if(this.input.username == this.$parent.mockAccount.username && this.input.password == this.$parent.mockAccount.password) {
                         this.$emit("authenticated", true);
                         this.$router.replace({ name: "dashboard" });
