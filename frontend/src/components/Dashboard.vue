@@ -7,7 +7,10 @@
       <v-container fluid>
         <v-layout row wrap>
           <v-card>
-            <v-img src="https://cdn.vuetifyjs.com/images/cards/desert.jpg" aspect-ratio="2.75"></v-img>
+            <v-img
+              src="https://bitcoinist.com/wp-content/uploads/2017/12/ss-crypto-future.jpg"
+              aspect-ratio="2.75"
+            ></v-img>
 
             <v-card-title primary-title>
               <div>
@@ -16,7 +19,10 @@
             </v-card-title>
           </v-card>
           <v-card>
-            <v-img src="https://cdn.vuetifyjs.com/images/cards/desert.jpg" aspect-ratio="2.75"></v-img>
+            <v-img
+              src="https://agiledigest.com/wp-content/uploads/2018/02/SailBoat_Web_1.jpg"
+              aspect-ratio="2.75"
+            ></v-img>
 
             <v-card-title primary-title>
               <div>
@@ -31,7 +37,10 @@
       <v-container fluid>
         <v-layout row wrap>
           <v-card @click.native="selectItem()">
-            <v-img src="https://cdn.vuetifyjs.com/images/cards/desert.jpg" aspect-ratio="2.75"></v-img>
+            <v-img
+              src="https://madebymany-v2-next.s3.amazonaws.com/uploads/blog/featured_image/1248/large_MxM_sprint_planning.jpg"
+              aspect-ratio="2.75"
+            ></v-img>
             <v-card-title primary-title @_click="selectItem()">
               <div>
                 <h3 class="headline mb-0">Sprint Planning Rough Draft</h3>
@@ -39,7 +48,10 @@
             </v-card-title>
           </v-card>
           <v-card>
-            <v-img src="https://cdn.vuetifyjs.com/images/cards/desert.jpg" aspect-ratio="2.75"></v-img>
+            <v-img
+              src="https://99designs-blog.imgix.net/blog/wp-content/uploads/2018/01/Screenshot-38-e1516267765988.png?auto=format&q=60&fit=max&w=930"
+              aspect-ratio="2.75"
+            ></v-img>
 
             <v-card-title primary-title>
               <div>
@@ -58,7 +70,10 @@ import Navigation from "./Navigation";
 export default {
   name: "Dashboard",
   data: () => ({
-    projects: ["Uber for coffee", "Twitter for slack"]
+    projects: ["AngelEth", "Delta Hacks"],
+    homeActive: false,
+    templateActive: false,
+    profileActive: false
   }),
   components: {
     navigation: Navigation

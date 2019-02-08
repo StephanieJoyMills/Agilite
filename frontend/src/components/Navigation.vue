@@ -7,7 +7,7 @@
         >Agilite</span>
 
 
-      <v-list-tile class = 'topMenu menu'>
+      <v-list-tile class = 'topMenu menu' v-on:mouseover="homeActive = !active"  v-bind:class="{ active: homeActive}">
         <v-list-tile-action>
           <v-icon>home</v-icon>
         </v-list-tile-action>
@@ -54,11 +54,13 @@
 export default {
   name: "Navigation",
   data: () => ({
-    projects: ["Uber for coffee", "Twitter for slack"]
+    projects: ["AngelEth", "Delta Hacks"],
+     active: true
   }),
   methods: {
       
     home() {
+      this.homeActive = true;
       this.$router.push("/dashboard");
     },
     templates() {
@@ -108,7 +110,8 @@ margin-left: 60px;
       font-weight: 200;
   font-size: 16px;
 }
-.activeMenu{
+.homeActive{
     color: purple;
+    background-color: red;
 }
 </style>

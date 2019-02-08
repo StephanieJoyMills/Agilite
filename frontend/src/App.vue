@@ -17,10 +17,7 @@ export default {
       mockAccount: {
         username: "a",
         password: "a"
-      },
-      homeActive: false,
-      templateActive: false,
-      profileActive: false
+      }
     };
   },
 
