@@ -5,7 +5,11 @@ exports.up = async function(knex, Promise) {
       table.increments("id").primary();
       table.string("type").notNullable();
       table.string("description");
-      table.jsonb("categories");
+      table.jsonb("categories").notNullable();
+      table
+        .integer("created_by")
+        .references("users.id")
+        .onDelete("SET NULL");
       table
         .string("template_image_url")
         .notNullable()
