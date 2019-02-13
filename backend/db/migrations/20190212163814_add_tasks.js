@@ -10,7 +10,7 @@ exports.up = async function(knex, Promise) {
       table
         .integer("assigned_by")
         .references("users.id")
-        .onDelete("DO NOTHING");
+        .onDelete("NO ACTION");
       table.string("description").notNullable();
       table
         .enu("status", ["complete", "in-complete"])

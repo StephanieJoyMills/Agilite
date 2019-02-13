@@ -7,8 +7,13 @@ exports.getUser = async email => {
   return res[0];
 };
 
-exports.addUser = async (email, password) => {
-  return knex("users").insert({ email, password });
+exports.addUser = async (email, password, firstName, lastName) => {
+  return knex("users").insert({
+    email,
+    password,
+    first_name: firstName,
+    last_name: lastName
+  });
 };
 
 exports.getProjects = async id => {

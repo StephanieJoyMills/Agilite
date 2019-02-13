@@ -28,7 +28,7 @@ module.exports = async function(app) {
       console.log(hashedPassword);
       const status = await addUser(email, hashedPassword, firstName, lastName);
       console.log(status);
-      const token = jwt.sign({ id: email }, process.env.secret, {
+      const token = jwt.sign({ id: email }, process.env.SECRET, {
         expiresIn: 86400 // 25 hours
       });
       return res.status(200).send({ auth: true, token });
@@ -43,21 +43,23 @@ module.exports = async function(app) {
   app.get("/login", async (req, res, next) => {
     const { email, password } = req.body;
     try {
-      const userData = await getUser(email);
-      if (userData.password === password) {
-        res.sendStatus(200);
-        return { user_id: userData.id };
+      const userInfo = await getUser(email);
+      const passwordIsValid = bcrypt.compareSync(password, userInfo.password);
+      if (!passwordIsValid) {
+        return res
+          .status(404)
+          .send({ err: "Invalid login", auth: false, token: null });
       }
 
-      res.status(404).send({ error: "invalid user" });
+      const token = jwt.sign({ id: email }, process.env.SECRET, {
+        expiresIn: 86400 // expires in 24 hours
+      });
+      return res.status(200).send({ auth: true, token });
     } catch (err) {
-      console.log(
-        {
-          err
-        },
-        "Failed to login"
-      );
-      next(err);
+      log.info({ err });
+      res
+        .status(500)
+        .json({ error: "There was an error processing your request" });
     }
   });
 
