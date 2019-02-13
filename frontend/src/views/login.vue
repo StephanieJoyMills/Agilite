@@ -3,6 +3,39 @@
     <link
       href="https://cdn.jsdelivr.net/npm/@typopro/web-bebas-neue@3.7.5/TypoPRO-BebasNeue-Bold.min.css"
       rel="stylesheet">
+      <b-modal id="sign-up" title="Sign up">
+        <v-form>
+            <v-text-field
+              prepend-icon="person"
+              name="login"
+              label="Email"
+              type="text"
+              v-model="register.username"
+            ></v-text-field>
+            <v-text-field
+              id="signUpPassword"
+              prepend-icon="lock"
+              name="signUpPassword"
+              label="Password"
+              v-model="register.password"
+              type="password"
+            ></v-text-field>
+            <v-text-field
+              id="passwordConf"
+              prepend-icon="lock"
+              name="passwordConf"
+              label="Confirm password"
+              v-model="register.passwordConf"
+              type="password"
+            ></v-text-field>
+          </v-form>
+          <div slot="modal-footer" style="width: 100%">
+            <div class="signup-button">
+              <p class="error-msg">{{ signUpError }}</p>
+              <v-btn color="#004B91" v-on:click="signup()" dark>Sign up</v-btn>
+            </div>
+         </div>
+      </b-modal>
       <b-row>
           <b-col cols="4">
             <div class="sign-in-form">
@@ -20,25 +53,26 @@
                     name="login"
                     label="Email"
                     type="text"
-                    v-model="input.username"
+                    v-model="credentials.username"
                   ></v-text-field>
                   <v-text-field
                     id="password"
                     prepend-icon="lock"
                     name="password"
                     label="Password"
-                    v-model="input.password"
+                    v-model="credentials.password"
                     type="password"
                   ></v-text-field>
-                  <v-card-actions>
+                  <div class="login-button">
+                    <p class="error-msg">{{ loginError }}</p>
                     <v-spacer></v-spacer>
                     <v-btn color="#004B91" v-on:click="login()" dark>Login</v-btn>
-                  </v-card-actions>
-                </v-form>
+                  </div>
+              </v-form>
             </div>
             <div class="text-center">
-              <span class="credentials-info">Register</span>
-              <span class="credentials-info"> | Forgot password?</span>
+              <span class="other-login" v-b-modal.sign-up>Register</span>
+              <span class="other-login"> | Forgot password?</span>
             </div>
           </b-col>
           <b-col cols="8" class="bg_img">
@@ -58,36 +92,72 @@ export default {
   name: "Login",
   data() {
     return {
-      input: {
+      credentials: {
         username: "",
         password: ""
-      }
+      },
+      register: {
+        username: "",
+        passwordConf: "",
+        password: ""
+      },
+      loginError: '',
+      signUpError: ''
     };
   },
   methods: {
     login() {
-      if (this.input.username !== "" || this.input.password !== "") {
-        if (
-          this.input.username === this.$parent.mockAccount.username &&
-          this.input.password === this.$parent.mockAccount.password
-        ) {
-          this.$emit("authenticated", true);
-          this.$router.replace({ name: "dashboard" });
+      const { username, password } = this.credentials;
+      if (username !== "" || password !== "") {
+        if (username && password) {
+          axios.get('http://localhost:3000/login', this.credentials).then((response) =>{
+            console.log(response);
+            this.$emit("authenticated", true);
+            this.$router.replace({ name: "dashboard" });
+          })
+          .catch(function (error) {
+              console.log(error);
+          });
         } else {
-          console.log("The username and / or password is incorrect");
+          this.loginError = "The username and / or password is incorrect";
         }
       } else {
-        console.log("A username and password must be present");
+        this.loginError = "A username and password must be present";
+      }
+    },
+    signup() {
+      const { username, password, passwordConf } = this.register;
+      if(username !== "" || password !== "" || passwordConf !== "") {
+        if(password === passwordConf) {
+          axios.post('http://localhost:3000/signup', this.register).then((response) =>{
+            console.log(response);
+            this.$emit("authenticated", true);
+            this.$router.replace({ name: "dashboard" });
+          })
+          .catch(function (error) {
+              console.log(error);
+          });
+        } else {
+          this.signUpError = "Please make sure your passwords match.";
+        }
+      } else {
+        this.signUpError = "A username and password must be present.";
       }
     }
   }
 };
 </script>
 
-<style scoped >
-div.v-card__text {
-  margin-left: 85px;
-  padding-right: 0px;
+<style scoped>
+
+.error-msg {
+  color: red;
+  margin-bottom: 20px;
+}
+
+.login-button {
+  text-align: center;
+  display: block;
 }
 
 .slogan {
@@ -95,16 +165,13 @@ div.v-card__text {
   margin-top: 15%;
   padding: 30px;
 }
-.trans {
-  background-color: none;
-}
 
-.credentials-info {
+.other-login {
   font-family: Roboto;
   font-size: 18px;
 }
 
-.credentials-info:hover {
+.other-login:hover {
   cursor: pointer;
   color: blue;
 }
@@ -135,35 +202,6 @@ div.v-card__text {
 
 .sign-in-form {
   padding: 40px;
-}
-
-.login {
-  background-color: white;
-  font-weight: 600;
-  padding: 20px;
-  width: 500px;
-  margin-left: 5px;
-  margin-bottom: 250px;
-  margin-top: 40px;
-  text-align: center;
-}
-#app {
-  width: 100%;
-}
-
-div.v-btn__content {
-  font-family: "futura";
-  color: white;
-  padding-left: 100px;
-  padding-right: 100px;
-}
-
-div.v-card__actions {
-  padding: 0;
-}
-
-button {
-  margin-bottom: 500px;
 }
 
 </style>
