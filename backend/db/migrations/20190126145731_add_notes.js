@@ -3,10 +3,19 @@ exports.up = async function(knex, Promise) {
   if (!exists) {
     return knex.schema.createTable("notes", function(table) {
       table.increments("id").primary();
-      table.string("text").notNullable();
-      table.string("category");
-      table.string("colour");
+      table.string("text");
+      table.string("category").notNullable();
+      // default colour to yellow
+      table
+        .string("colour")
+        .notNullable()
+        .defaultTo("#ffff88");
       table.integer("order");
+      table
+        .integer("board_id")
+        .notNullable()
+        .references("boards.id")
+        .onDelete("CASCADE");
     });
   }
 };

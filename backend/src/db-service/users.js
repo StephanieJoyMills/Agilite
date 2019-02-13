@@ -1,10 +1,14 @@
 const { knex } = require("./knex");
 
-exports.login = async email => {
+exports.getUser = async email => {
   const res = await knex("users")
     .select("password", "id")
     .where("email", email);
   return res[0];
+};
+
+exports.addUser = async (email, password) => {
+  return knex("users").insert({ email, password });
 };
 
 exports.getProjects = async id => {

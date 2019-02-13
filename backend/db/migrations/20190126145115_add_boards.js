@@ -7,24 +7,20 @@ exports.up = async function(knex, Promise) {
         .integer("template_id")
         .notNullable()
         .references("templates.id")
-        .onDelete("CASCADE");
+        .onDelete("SET NULL");
       table.string("description");
       table.string("board_image_url");
       table
         .integer("creator_id")
         .notNullable()
         .references("users.id")
-        .onDelete("CASCADE");
+        .onDelete("NO ACTION");
       table
         .integer("project_id")
         .references("projects.id")
         .onDelete("CASCADE");
       table
         .timestamp("created_at")
-        .notNullable()
-        .defaultTo(knex.fn.now());
-      table
-        .timestamp("accessed_at")
         .notNullable()
         .defaultTo(knex.fn.now());
     });

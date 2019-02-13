@@ -1,4 +1,3 @@
-//ideally we should set up a master and replica db; where the master is used purely for writes (or reads that directly follow writes)
 require("dotenv").config();
 
 const knexFile = require("../../knexfile");
