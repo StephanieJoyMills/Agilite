@@ -7,10 +7,24 @@
         <v-form>
             <v-text-field
               prepend-icon="person"
+              name="firstName"
+              label="First name"
+              type="text"
+              v-model="register.firstName"
+            ></v-text-field>
+            <v-text-field
+              prepend-icon="person"
+              name="lastName"
+              label="Last name"
+              type="text"
+              v-model="register.lastName"
+            ></v-text-field>
+            <v-text-field
+              prepend-icon="person"
               name="login"
               label="Email"
               type="text"
-              v-model="register.username"
+              v-model="register.email"
             ></v-text-field>
             <v-text-field
               id="signUpPassword"
@@ -53,7 +67,7 @@
                     name="login"
                     label="Email"
                     type="text"
-                    v-model="credentials.username"
+                    v-model="credentials.email"
                   ></v-text-field>
                   <v-text-field
                     id="password"
@@ -93,11 +107,13 @@ export default {
   data() {
     return {
       credentials: {
-        username: "",
-        password: ""
+        "email": "",
+        "password": ""
       },
       register: {
-        username: "",
+        firstName: "",
+        lastName: "",
+        email: "",
         passwordConf: "",
         password: ""
       },
@@ -107,11 +123,13 @@ export default {
   },
   methods: {
     login() {
-      const { username, password } = this.credentials;
-      if (username !== "" || password !== "") {
-        if (username && password) {
-          axios.get('http://localhost:3000/login', this.credentials).then((response) =>{
-            console.log(response);
+      const { email, password } = this.credentials;
+      let token;
+      if (email !== "" || password !== "") {
+        if (email && password) {
+          axios.post('http://localhost:3000/login', this.credentials).then((response) =>{
+            token = response.data.token;
+            console.log(token);
             this.$emit("authenticated", true);
             this.$router.replace({ name: "dashboard" });
           })
@@ -126,10 +144,13 @@ export default {
       }
     },
     signup() {
-      const { username, password, passwordConf } = this.register;
-      if(username !== "" || password !== "" || passwordConf !== "") {
+      const { email, password, passwordConf, firstName, lastName } = this.register;
+      if(email !== "" || password !== "" || passwordConf !== "") {
+        if(firstName === "" || lastName == "") {
+          this.signUpError = "Please enter your first/last name.";
+        }
         if(password === passwordConf) {
-          axios.post('http://localhost:3000/signup', this.register).then((response) =>{
+          axios.post('http://localhost:3000/signup', this.register).then((response) => {
             console.log(response);
             this.$emit("authenticated", true);
             this.$router.replace({ name: "dashboard" });
