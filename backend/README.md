@@ -6,7 +6,7 @@
 
 Install Postgres with homebrew: `brew install postgresql`  
 Check version: `postgres -V`  
-Create our db: `createdb shopify-challenge`  
+Create our db: `createdb agilite`  
 Open up psql utility: `psql postgres`  
 (Optional) set password: `\password`  
 Check to make sure our db was created: `\list`
