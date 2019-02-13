@@ -11,6 +11,7 @@ const log = require("../logger");
 
 module.exports = async function(app) {
   app.post("/signup", async (req, res, next) => {
+    console.log(req.body);
     const { email, password } = req.body;
     let firstName = req.body.first_name;
     let lastName = req.body.last_name;
@@ -40,8 +41,9 @@ module.exports = async function(app) {
     }
   });
 
-  app.get("/login", async (req, res, next) => {
+  app.post("/login", async (req, res, next) => {
     const { email, password } = req.body;
+    console.log(req.body);
     try {
       const userInfo = await getUser(email);
       const passwordIsValid = bcrypt.compareSync(password, userInfo.password);
