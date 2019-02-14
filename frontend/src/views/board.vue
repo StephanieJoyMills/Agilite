@@ -1,11 +1,9 @@
 <template>
-    <span>hello</span>
+  <span>hello</span>
 </template>
 
 <script>
-
 </script>
 
 <style>
-
 </style>

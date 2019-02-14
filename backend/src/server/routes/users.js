@@ -16,18 +16,14 @@ module.exports = async function(app) {
     let lastName = req.body.last_name;
     try {
       // Check to see if email is already in db
-
       let userExists = await getUser(email);
       if (userExists) {
         return res
           .status(404)
           .send("Email already in use. Please choose another");
       }
-
       const hashedPassword = bcrypt.hashSync(password, 8);
-      console.log(hashedPassword);
-      const status = await addUser(email, hashedPassword, firstName, lastName);
-      console.log(status);
+      await addUser(email, hashedPassword, firstName, lastName);
       const token = jwt.sign({ id: email }, process.env.SECRET, {
         expiresIn: 86400 // 25 hours
       });
