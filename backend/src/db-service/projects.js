@@ -1,20 +1,17 @@
 const { knex } = require("./knex");
 
-exports.getProject = async id => {
-  const members = await knex("project_members")
-    .where("project_id", id)
-    .select("*");
+exports.getProjects = async id => {
+  personalProjects = knex("boards")
+    .where("boards.project_id", null)
+    .andWhere("boards.creator_id", id)
+    .select("boards.id");
 
-  const boards = await knex("boards")
-    .where("project_id", id)
-    .select("*");
-
-  const project = await knex("projects")
-    .where({ id })
-    .select("*");
-
-  const obj = { project, boards, members };
-  return obj;
+  return knex("boards")
+    .select("*")
+    .leftJoin("projects", "projects.id", "boards.project_id")
+    .leftJoin("project_members", "project_members.project_id", "projects.id")
+    .where("project_members.user_id", id)
+    .orWhere("boards.id", "in", personalProjects);
 };
 
 exports.getRecent = async id => {

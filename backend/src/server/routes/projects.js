@@ -1,11 +1,11 @@
-const { getProject } = require("../../db-service");
+const { getProjects } = require("../../db-service");
 
 module.exports = async function(app) {
-  app.get("/projects/:id", async (req, res, next) => {
-    const { id } = req.params;
+  app.get("/user/me/projects", app.authenticate, async (req, res, next) => {
+    const { id } = req;
     try {
-      const project = await getProject(id);
-      res.send(project);
+      const projects = await getProjects(id);
+      res.send(projects);
       return;
     } catch (err) {
       console.log(

@@ -129,6 +129,7 @@ export default {
         if (email && password) {
           axios.post('http://localhost:3000/login', this.credentials).then((response) =>{
             token = response.data.token;
+            window.localStorage.setItem("token", token);
             console.log(token);
             this.$emit("authenticated", true);
             this.$router.replace({ name: "dashboard" });
@@ -151,6 +152,8 @@ export default {
         }
         if(password === passwordConf) {
           axios.post('http://localhost:3000/signup', this.register).then((response) => {
+            token = response.data.token;
+            window.localStorage.setItem("token", token);
             console.log(response);
             this.$emit("authenticated", true);
             this.$router.replace({ name: "dashboard" });

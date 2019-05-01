@@ -6,7 +6,7 @@ module.exports = async function(app) {
 
   io.on("connection", async socket => {
     let previousId;
-    console.log("here");
+
     setInterval(function() {
       socket.emit("stream", { title: "A new title via Socket.IO!" });
     }, 1000);
@@ -25,11 +25,9 @@ module.exports = async function(app) {
     });
 
     socket.on("editBoard", async board => {
-      const notes = await getNotes(board.id);
+      //upsert note
       socket.to(board.id).emit("board", notes);
     });
-
-    io.emit("help");
 
     console.log(`Socket ${socket.id} has connected`);
   });

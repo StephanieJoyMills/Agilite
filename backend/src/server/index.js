@@ -5,7 +5,7 @@ const app = express();
 const cors = require("cors");
 app.use(cors());
 const port = process.env.PORT || 3000;
-
+require("./middleware/auth.js")(app);
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());

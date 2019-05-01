@@ -15,7 +15,7 @@ module.exports = app => {
           .status(500)
           .send({ auth: false, message: "Failed to authenticate token." });
       }
-      req.email = decoded.id;
+      req.id = decoded.id;
       next();
     });
   }

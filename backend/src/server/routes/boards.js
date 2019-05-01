@@ -38,7 +38,6 @@ module.exports = function(app) {
   app.get("/process_image/:image_url/diagram/:id", async (req, res, next) => {
     let { image_url, id } = req.params;
     let image = "http://storage.googleapis.com/delta-hacks/" + image_url;
-
     try {
       var spawnSync = require("child_process").spawnSync;
       console.log(image);
@@ -49,11 +48,9 @@ module.exports = function(app) {
           encoding: "utf8"
         }
       );
-      console.log(result);
       let notes = result.stdout.split("*").filter(function(el) {
         return el.length > 2;
       });
-      console.log(notes);
       arr = [
         "Process",
         "Hefactor",
@@ -71,7 +68,6 @@ module.exports = function(app) {
         note.text = arr[index];
         insertNote(id, note);
       });
-
       res.sendStatus(200);
     } catch (err) {
       console.log(

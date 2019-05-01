@@ -11,12 +11,10 @@ const log = require("../logger");
 
 module.exports = async function(app) {
   app.post("/signup", async (req, res, next) => {
-    console.log(req.body);
-    const { email, password } = req.body;
-    let firstName = req.body.first_name;
-    let lastName = req.body.last_name;
+    const { email, password, firstName, lastName } = req.body;
     try {
       // Check to see if email is already in db
+
       let userExists = await getUser(email);
       if (userExists) {
         return res
@@ -24,8 +22,9 @@ module.exports = async function(app) {
           .send("Email already in use. Please choose another");
       }
       const hashedPassword = bcrypt.hashSync(password, 8);
-      await addUser(email, hashedPassword, firstName, lastName);
-      const token = jwt.sign({ id: email }, process.env.SECRET, {
+
+      const id = await addUser(email, hashedPassword, firstName, lastName);
+      const token = jwt.sign({ id }, process.env.SECRET, {
         expiresIn: 86400 // 25 hours
       });
       return res.status(200).send({ auth: true, token });
@@ -39,17 +38,21 @@ module.exports = async function(app) {
 
   app.post("/login", async (req, res, next) => {
     const { email, password } = req.body;
-    console.log(req.body);
     try {
       const userInfo = await getUser(email);
+      if (!userInfo) {
+        return res
+          .status(404)
+          .send({ err: "User not found", auth: false, token: null });
+      }
       const passwordIsValid = bcrypt.compareSync(password, userInfo.password);
       if (!passwordIsValid) {
         return res
           .status(404)
           .send({ err: "Invalid login", auth: false, token: null });
       }
-
-      const token = jwt.sign({ id: email }, process.env.SECRET, {
+      console.log(userInfo);
+      const token = jwt.sign({ id: userInfo.id }, process.env.SECRET, {
         expiresIn: 86400 // expires in 24 hours
       });
       return res.status(200).send({ auth: true, token });
@@ -58,40 +61,6 @@ module.exports = async function(app) {
       res
         .status(500)
         .json({ error: "There was an error processing your request" });
-    }
-  });
-
-  app.get("/user/:id/projects", async (req, res, next) => {
-    const { id } = req.params;
-    try {
-      const projects = await getProjects(id);
-      res.send(projects);
-      return;
-    } catch (err) {
-      console.log(
-        {
-          err
-        },
-        "Failed to get projects"
-      );
-      next(err);
-    }
-  });
-
-  app.get("/user/:id/designs", async (req, res, next) => {
-    const { id } = req.params;
-    try {
-      const designs = await getDesigns(id);
-      res.send(designs);
-      return;
-    } catch (err) {
-      console.log(
-        {
-          err
-        },
-        "Failed to get projects"
-      );
-      next(err);
     }
   });
 };

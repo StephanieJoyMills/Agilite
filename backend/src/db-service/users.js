@@ -8,19 +8,15 @@ exports.getUser = async email => {
 };
 
 exports.addUser = async (email, password, firstName, lastName) => {
-  return knex("users").insert({
-    email,
-    password,
-    first_name: firstName,
-    last_name: lastName
-  });
-};
-
-exports.getProjects = async id => {
-  return knex("project_members")
-    .where("user_id", id)
-    .leftJoin("projects", "projects.id", "project_members.project_id")
-    .select("*");
+  let query = await knex("users")
+    .insert({
+      email,
+      password,
+      first_name: firstName,
+      last_name: lastName
+    })
+    .returning("id");
+  return query[0];
 };
 
 exports.getDesigns = async id => {
