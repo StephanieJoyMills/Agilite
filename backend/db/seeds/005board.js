@@ -8,6 +8,7 @@ exports.seed = function(knex, Promise) {
         {
           id: 1,
           template_id: 1,
+          name: "My retro",
           description: "Sprint Retro #1",
           board_image_url: "_",
           creator_id: 1,
@@ -16,6 +17,7 @@ exports.seed = function(knex, Promise) {
         {
           id: 2,
           template_id: 1,
+          name: "My retro",
           description: "Personal Sprint Retro",
           board_image_url: "_",
           creator_id: 1,

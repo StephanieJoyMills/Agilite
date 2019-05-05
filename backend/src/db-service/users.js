@@ -1,10 +1,17 @@
 const { knex } = require("./knex");
 
-exports.getUser = async email => {
+exports.getUserByEmail = async (email) => {
   const res = await knex("users")
     .select("password", "id")
     .where("email", email);
   return res[0];
+};
+
+exports.validateUser = async (id) => {
+  const res = await knex("users")
+    .select("email")
+    .where({ id });
+  return res.length > 0;
 };
 
 exports.addUser = async (email, password, firstName, lastName) => {
@@ -19,7 +26,7 @@ exports.addUser = async (email, password, firstName, lastName) => {
   return query[0];
 };
 
-exports.getDesigns = async id => {
+exports.getDesigns = async (id) => {
   return knex("boards")
     .where("creator_id", id)
     .andWhere("project_id", null)

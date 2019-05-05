@@ -9,6 +9,10 @@ exports.up = async function(knex, Promise) {
         .string("project_image_url")
         .notNullable()
         .unique();
+      table
+        .timestamp("created_at")
+        .notNullable()
+        .defaultTo(knex.fn.now());
     });
   }
 };

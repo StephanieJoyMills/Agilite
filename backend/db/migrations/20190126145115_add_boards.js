@@ -3,6 +3,7 @@ exports.up = async function(knex, Promise) {
   if (!exists) {
     return knex.schema.createTable("boards", function(table) {
       table.increments("id").primary();
+      table.string("name").notNullable();
       table
         .integer("template_id")
         .notNullable()

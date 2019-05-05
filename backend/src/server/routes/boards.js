@@ -3,6 +3,7 @@ const { getRecent, getNotes, insertNote } = require("../../db-service");
 const path = require("path");
 
 module.exports = function(app) {
+  // @TODO Get Notes by board id
   app.get("/board/:id/notes", async (req, res, next) => {
     const { id } = req.params;
     try {
@@ -19,6 +20,7 @@ module.exports = function(app) {
       next(err);
     }
   });
+  // @TODO fix this
   app.get("/user/:id/recent", async (req, res, next) => {
     const { id } = req.params;
     try {
@@ -35,6 +37,7 @@ module.exports = function(app) {
       next(err);
     }
   });
+  // @TODO fix this
   app.get("/process_image/:image_url/diagram/:id", async (req, res, next) => {
     let { image_url, id } = req.params;
     let image = "http://storage.googleapis.com/delta-hacks/" + image_url;

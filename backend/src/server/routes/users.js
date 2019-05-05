@@ -1,5 +1,5 @@
 const {
-  getUser,
+  getUserByEmail,
   addUser,
   getProjects,
   getDesigns
@@ -15,7 +15,7 @@ module.exports = async function(app) {
     try {
       // Check to see if email is already in db
 
-      let userExists = await getUser(email);
+      let userExists = await getUserByEmail(email);
       if (userExists) {
         return res
           .status(404)
@@ -39,7 +39,7 @@ module.exports = async function(app) {
   app.post("/login", async (req, res, next) => {
     const { email, password } = req.body;
     try {
-      const userInfo = await getUser(email);
+      const userInfo = await getUserByEmail(email);
       if (!userInfo) {
         return res
           .status(404)
