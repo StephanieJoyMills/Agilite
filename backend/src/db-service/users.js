@@ -8,6 +8,7 @@ exports.getUserByEmail = async (email) => {
 };
 
 exports.validateUser = async (id) => {
+  console.log(id);
   const res = await knex("users")
     .select("email")
     .where({ id });

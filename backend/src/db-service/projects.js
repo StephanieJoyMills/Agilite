@@ -1,5 +1,18 @@
 const { knex } = require("./knex");
 
+exports.getProjectTeam = async (projectId) => {
+  return knex("project_members")
+    .where("project_id", projectId)
+    .select("user_id");
+};
+
+exports.addProjectMember = async (projectId, userId) => {
+  return knex("project_members").insert({
+    project_id: projectId,
+    user_id: userId
+  });
+};
+
 exports.getProjects = async (id) => {
   personalProjects = knex("boards")
     .where("boards.project_id", null)
@@ -34,13 +47,11 @@ exports.getProjects = async (id) => {
     if (!name) {
       name = "Personal";
     }
-
     let board = {
       id: project.board_id,
       name: project.board_name,
       created_at: project.board_created_at
     };
-
     let member = {
       first_name: project.first_name,
       last_name: project.last_name,
